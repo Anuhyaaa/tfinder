@@ -20,29 +20,29 @@ $cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", 
 <div class="bigheader">
     <h1>Find Local Technicians Near You</h1>
     <p>Connect with skilled professionals for all your service needs</p>
-</div>
 
-<div class="searchbox">
-    <form method="GET" action="search.php" class="searchform">
-        <select name="category" style="flex:1;min-width:200px;padding:12px;border:1px solid #ddd;border-radius:4px;font-size:14px;">
-            <option value="">Select Service Category</option>
-            <?php
-            mysqli_data_seek($cats, 0);
-            while($cat = mysqli_fetch_assoc($cats)):
-            ?>
-                <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
-            <?php endwhile; ?>
-        </select>
+    <div class="searchbox">
+        <form method="GET" action="search.php" class="searchform">
+            <select name="category" style="flex:1;min-width:200px;padding:12px;border:1px solid #ddd;border-radius:4px;font-size:14px;">
+                <option value="">Select Service Category</option>
+                <?php
+                mysqli_data_seek($cats, 0);
+                while($cat = mysqli_fetch_assoc($cats)):
+                ?>
+                    <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
+                <?php endwhile; ?>
+            </select>
 
-        <select name="location" style="flex:1;min-width:200px;padding:12px;border:1px solid #ddd;border-radius:4px;font-size:14px;">
-            <option value="">Select City</option>
-            <?php foreach($cities as $city): ?>
-                <option value="<?php echo $city; ?>"><?php echo $city; ?></option>
-            <?php endforeach; ?>
-        </select>
+            <select name="location" style="flex:1;min-width:200px;padding:12px;border:1px solid #ddd;border-radius:4px;font-size:14px;">
+                <option value="">Select City</option>
+                <?php foreach($cities as $city): ?>
+                    <option value="<?php echo $city; ?>"><?php echo $city; ?></option>
+                <?php endforeach; ?>
+            </select>
 
-        <button type="submit" class="btnprimary">Search</button>
-    </form>
+            <button type="submit" class="btnprimary">Search</button>
+        </form>
+    </div>
 </div>
 
 <div class="gridsection">

@@ -120,11 +120,11 @@ $role = $_SESSION['role'];
         </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:30px;">
+    <div class="dashgrid">
         <div class="dashpanel">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
                 <h3>Recent Activity</h3>
-                <a href="jobs.php" style="color:#3498db;text-decoration:none;font-size:14px;">View All →</a>
+                <a href="jobs.php" style="color:#2563eb;text-decoration:none;font-size:14px;">View All →</a>
             </div>
 
             <?php if(count($recentjobs) > 0): ?>

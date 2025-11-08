@@ -24,7 +24,6 @@ $states = ["Maharashtra", "Delhi", "Karnataka", "Telangana", "Gujarat", "Tamil N
 
     <form method="POST" action="register_process.php">
         <div class="formgroup">
-            <!-- <label>I am a:</label> -->
             <div style="display:flex;gap:15px;margin-top:10px;">
                 <div class="rolebox active" onclick="selectrole('user')" id="userbox">
                     <input type="radio" name="roletype" value="user" id="usertype" checked onchange="hideshow()" style="display:none;">

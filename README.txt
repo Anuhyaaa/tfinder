@@ -60,7 +60,7 @@ DATABASE STATISTICS
 -------------------
 - Categories: 8
 - Regular Users: 5
-- Technicians: ~1800 (auto-generated)
+- Technicians: ~1800 (created by seeder script)
 - Reviews: 0 (empty initially)
 
 FEATURES
