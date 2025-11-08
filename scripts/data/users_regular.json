@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Rahul Sharma",
+    "email": "rahul@test.com",
+    "password": "password123"
+  },
+  {
+    "name": "Priya Patel",
+    "email": "priya@test.com",
+    "password": "password123"
+  },
+  {
+    "name": "Amit Kumar",
+    "email": "amit@test.com",
+    "password": "password123"
+  },
+  {
+    "name": "Sneha Gupta",
+    "email": "sneha@test.com",
+    "password": "password123"
+  },
+  {
+    "name": "Vikram Singh",
+    "email": "vikram@test.com",
+    "password": "password123"
+  }
+]

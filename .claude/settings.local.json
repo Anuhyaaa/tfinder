@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:gemini.google.com)",
+      "WebFetch(domain:docs.google.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

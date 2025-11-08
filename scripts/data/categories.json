@@ -1,0 +1,10 @@
+[
+  { "name": "AC Repair", "icon": "❄️", "description": "Professional ac repair services" },
+  { "name": "Appliance Repair", "icon": "🔌", "description": "Professional appliance repair services" },
+  { "name": "Car Mechanic", "icon": "🚗", "description": "Professional car mechanic services" },
+  { "name": "Carpenter", "icon": "🔨", "description": "Professional carpenter services" },
+  { "name": "Electrician", "icon": "⚡", "description": "Professional electrician services" },
+  { "name": "Mobile Repair", "icon": "📱", "description": "Professional mobile repair services" },
+  { "name": "Painter", "icon": "🎨", "description": "Professional painter services" },
+  { "name": "Plumber", "icon": "🔧", "description": "Professional plumber services" }
+]
