@@ -20,61 +20,101 @@ $bookings = mysqli_query($conn, "SELECT b.*, u.name as tech_name, r.id as review
                                   ORDER BY b.scheduled_date DESC");
 ?>
 
-<h2>My Bookings</h2>
+<div class="pagetitle">
+    <h2>📅 My Bookings</h2>
+    <p>Manage and track all your service bookings</p>
+</div>
 
 <div class="bookingscontainer">
     <?php if (mysqli_num_rows($bookings) > 0): ?>
         <?php while($book = mysqli_fetch_assoc($bookings)): ?>
-            <div class="bookingcard">
-                <div class="bookingheader">
-                    <div>
-                        <h3><?php echo htmlspecialchars($book['tech_name']); ?></h3>
-                        <p style="color:#6b7280;margin:5px 0;"><?php echo htmlspecialchars($book['service']); ?></p>
+            <div class="bookingcard enhanced">
+                <div class="bookingheader" onclick="toggleBooking(this)">
+                    <div class="bookingheaderleft">
+                        <div class="technicianicon">👨‍🔧</div>
+                        <div>
+                            <h3><?php echo htmlspecialchars($book['tech_name']); ?></h3>
+                            <p class="servicetype">🔧 <?php echo htmlspecialchars($book['service']); ?></p>
+                        </div>
                     </div>
-                    <span class="statusbadge status<?php echo $book['status']; ?>">
-                        <?php echo ucfirst($book['status']); ?>
-                    </span>
+                    <div class="bookingheaderright">
+                        <span class="statusbadge status<?php echo $book['status']; ?>">
+                            <?php 
+                                $statusIcons = [
+                                    'pending' => '⏳',
+                                    'confirmed' => '✓',
+                                    'completed' => '✅',
+                                    'cancelled' => '❌',
+                                    'rejected' => '🚫'
+                                ];
+                                echo $statusIcons[$book['status']] ?? '';
+                            ?>
+                            <?php echo ucfirst($book['status']); ?>
+                        </span>
+                        <span class="expandicon">▼</span>
+                    </div>
                 </div>
 
-                <div class="bookingdetails">
+                <div class="bookingdetails" style="display: none;">
                     <div class="bookinginfo">
                         <div class="infoitem">
-                            <strong>Date & Time</strong>
-                            <p><?php echo date('M d, Y', strtotime($book['scheduled_date'])); ?> at <?php echo date('h:i A', strtotime($book['scheduled_time'])); ?></p>
+                            <span class="infoicon">📅</span>
+                            <div class="infocontent">
+                                <strong>Date & Time</strong>
+                                <p><?php echo date('M d, Y', strtotime($book['scheduled_date'])); ?></p>
+                                <p class="timetext"><?php echo date('h:i A', strtotime($book['scheduled_time'])); ?></p>
+                            </div>
                         </div>
                         <div class="infoitem">
-                            <strong>Duration</strong>
-                            <p><?php echo $book['duration']; ?> hours</p>
+                            <span class="infoicon">⏱️</span>
+                            <div class="infocontent">
+                                <strong>Duration</strong>
+                                <p><?php echo $book['duration']; ?> hours</p>
+                            </div>
                         </div>
                         <div class="infoitem">
-                            <strong>Total Amount</strong>
-                            <p class="priceinfo">₹<?php echo number_format($book['total_amount'], 2); ?></p>
+                            <span class="infoicon">💰</span>
+                            <div class="infocontent">
+                                <strong>Total Amount</strong>
+                                <p class="priceinfo">₹<?php echo number_format($book['total_amount'], 2); ?></p>
+                            </div>
                         </div>
                     </div>
 
                     <?php if ($book['status'] == 'completed' && $book['review_id']): ?>
                         <div class="reviewbox">
-                            <strong>Your Review</strong>
-                            <div style="margin-top:8px;">
-                                <span class="ratingstar">★</span>
-                                <span style="font-weight:600;color:#1f2937;"><?php echo $book['rating']; ?>/5</span>
+                            <div class="reviewheader">
+                                <span class="reviewicon">💬</span>
+                                <strong>Your Review</strong>
+                            </div>
+                            <div class="ratingdisplay">
+                                <?php for($i=1; $i<=5; $i++): ?>
+                                    <span class="ratingstar <?php echo $i <= $book['rating'] ? 'filled' : 'empty'; ?>">★</span>
+                                <?php endfor; ?>
+                                <span class="ratingvalue"><?php echo $book['rating']; ?>/5</span>
                             </div>
                             <?php if($book['comment']): ?>
-                                <p style="margin-top:10px;color:#6b7280;line-height:1.6;"><?php echo nl2br(htmlspecialchars($book['comment'])); ?></p>
+                                <p class="reviewcomment"><?php echo nl2br(htmlspecialchars($book['comment'])); ?></p>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
 
                     <div class="bookingactions">
                         <?php if ($book['status'] == 'pending' || $book['status'] == 'confirmed'): ?>
-                            <a href="update_booking.php?id=<?php echo $book['id']; ?>&status=cancelled" class="btndanger" onclick="return confirm('Cancel this booking?')">Cancel</a>
+                            <a href="update_booking.php?id=<?php echo $book['id']; ?>&status=cancelled" class="btndanger" onclick="return confirm('Cancel this booking?')">
+                                ❌ Cancel Booking
+                            </a>
                         <?php endif; ?>
 
                         <?php if ($book['status'] == 'completed'): ?>
                             <?php if ($book['review_id']): ?>
-                                <a href="leave_review.php?booking_id=<?php echo $book['id']; ?>&tech_id=<?php echo $book['technician_id']; ?>" class="btnprimary">Edit Review</a>
+                                <a href="leave_review.php?booking_id=<?php echo $book['id']; ?>&tech_id=<?php echo $book['technician_id']; ?>" class="btnprimary">
+                                    ✏️ Edit Review
+                                </a>
                             <?php else: ?>
-                                <a href="leave_review.php?booking_id=<?php echo $book['id']; ?>&tech_id=<?php echo $book['technician_id']; ?>" class="btnsuccess">Leave Review</a>
+                                <a href="leave_review.php?booking_id=<?php echo $book['id']; ?>&tech_id=<?php echo $book['technician_id']; ?>" class="btnsuccess">
+                                    ⭐ Leave Review
+                                </a>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
@@ -82,8 +122,31 @@ $bookings = mysqli_query($conn, "SELECT b.*, u.name as tech_name, r.id as review
             </div>
         <?php endwhile; ?>
     <?php else: ?>
-        <p style="text-align:center;padding:40px;color:#7f8c8d;">No bookings yet.</p>
+        <div class="emptybookings">
+            <div class="emptyicon">📋</div>
+            <h3>No bookings yet</h3>
+            <p>Start booking services from our talented technicians</p>
+            <a href="search.php" class="btnprimary">🔍 Find Technicians</a>
+        </div>
     <?php endif; ?>
 </div>
+
+<script>
+function toggleBooking(headerElement) {
+    const bookingCard = headerElement.closest('.bookingcard');
+    const details = bookingCard.querySelector('.bookingdetails');
+    const expandIcon = headerElement.querySelector('.expandicon');
+    
+    if (details.style.display === 'none') {
+        details.style.display = 'block';
+        expandIcon.textContent = '▲';
+        bookingCard.classList.add('expanded');
+    } else {
+        details.style.display = 'none';
+        expandIcon.textContent = '▼';
+        bookingCard.classList.remove('expanded');
+    }
+}
+</script>
 
 <?php include 'includes/footer.php'; ?>
