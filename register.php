@@ -27,15 +27,15 @@ $states = ["Maharashtra", "Delhi", "Karnataka", "Telangana", "Gujarat", "Tamil N
             <div style="display:flex;gap:15px;margin-top:10px;">
                 <div class="rolebox active" onclick="selectrole('user')" id="userbox">
                     <input type="radio" name="roletype" value="user" id="usertype" checked onchange="hideshow()" style="display:none;">
-                    <div style="font-size:40px;margin-bottom:10px;">👤</div>
-                    <div style="font-weight:bold;font-size:18px;">User</div>
-                    <div style="font-size:12px;color:#7f8c8d;margin-top:5px;">I need services</div>
+                    <div style="font-size:32px;margin-bottom:8px;">👤</div>
+                    <div style="font-weight:bold;font-size:17px;">User</div>
+                    <div style="font-size:12px;color:#7f8c8d;margin-top:4px;">I need services</div>
                 </div>
                 <div class="rolebox" onclick="selectrole('technician')" id="techbox">
                     <input type="radio" name="roletype" value="technician" id="techtype" onchange="hideshow()" style="display:none;">
-                    <div style="font-size:40px;margin-bottom:10px;">🔧</div>
-                    <div style="font-weight:bold;font-size:18px;">Technician</div>
-                    <div style="font-size:12px;color:#7f8c8d;margin-top:5px;">I provide services</div>
+                    <div style="font-size:32px;margin-bottom:8px;">🔧</div>
+                    <div style="font-weight:bold;font-size:17px;">Technician</div>
+                    <div style="font-size:12px;color:#7f8c8d;margin-top:4px;">I provide services</div>
                 </div>
             </div>
         </div>
